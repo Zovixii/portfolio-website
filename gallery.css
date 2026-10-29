@@ -1,0 +1,106 @@
+body
+{
+    display: flex;
+    flex-direction: row;
+    
+    background-color: #9A8C98;
+    min-height: 100vh;
+    
+    p
+    {
+        font-size: 1.1rem;
+    }
+}
+
+main a
+{
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+h1
+{
+    margin: 50px 30% 0 0;
+    font-weight: 500;
+}
+
+#galleryContainer
+{
+    margin-top: 200px;
+    margin-bottom: 200px;
+    
+    display: grid;
+    grid-template-columns: repeat(3, 500px);
+    grid-template-rows: repeat(3, 500px);
+    grid-column-gap: 30px;
+    grid-row-gap: 120px;
+    
+    figure
+    {
+        height: 100%;
+        width: 100%;
+        border-radius: inherit; 
+        figcaption
+        {
+            color: white;
+            font-family: "Encode Sans Expanded", sans-serif;
+            font-size: 1rem;
+        }
+    }
+    
+    img
+    {   
+        cursor: pointer;
+        border-radius: inherit;
+        object-fit: cover;
+        
+        height: 100%;
+        width: 100%;
+    }
+    
+    > div
+    {
+        max-width: 500px;
+        height: 500px;
+        border: 2px solid white;
+    }
+}
+
+
+
+
+.topRightBorder
+{
+    border-top-right-radius: 20px;
+}
+.topLeftBorder
+{
+    border-top-left-radius: 20px;
+}
+.bottomRightBorder
+{
+    border-bottom-right-radius: 20px;
+}
+.bottomLeftBorder
+{
+    border-bottom-left-radius: 20px;
+}
+
+
+footer
+{
+    backdrop-filter: brightness(75%);
+    a
+    {
+        border-radius: 10px;
+        transition: box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1), backdrop-filter 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    a:hover
+    {
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4),
+                    0 0 20px 0 rgba(0, 0, 0, 0.4) inset;
+    
+        backdrop-filter: brightness(120%);
+    }
+}

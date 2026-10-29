@@ -1,0 +1,228 @@
+header
+{
+    position: fixed;
+    height: 100%;
+    width: 100px;
+    min-width: 100px;
+    
+    z-index: 5;
+    
+    border: 1px solid black;
+    border-radius: 0 20px 20px 0;
+    
+    display: flex;
+    flex-direction: column;
+    
+    transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), backdrop-filter 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    
+    backdrop-filter: blur(30px);
+    
+    .long
+    {
+        display: none;
+    }
+    
+    &:hover
+    {
+        backdrop-filter: brightness(200%);
+        width: 200px;
+        .short
+        {
+            display: none;
+        }
+        .long
+        {
+            display: inline;
+        }
+        ~ #blurElement
+        {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            
+            background: rgba(0, 0, 0, 0.5);
+        }
+    }
+    
+    a
+    {
+        text-decoration: none;
+        color: white;
+        border-radius: 10px;
+        
+        transition: box-shadow 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        &:hover
+        {
+            box-shadow: 0 0 5px 5px rgba(255, 255, 255, 1);
+        }
+    }
+}
+
+#websiteLogo
+{
+    border-top-right-radius: 20px;
+    
+    margin: 0 auto;
+    width: 100px;
+}
+
+#buttonsContainer
+{
+    width: 100%;
+    
+    text-align: center;
+    margin: auto 0;
+}
+
+header div > span
+{
+    height: 100px;
+    align-content: center;
+    
+    font-family: "Encode Sans Expanded", sans-serif;
+    font-weight: 200;
+    font-size: 2.2rem;
+    color: white;
+    
+    &:not(.doNotSeparate)
+    {
+        margin-top: 5px;
+    }
+}
+
+main:not(.alignLeft)
+{
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
+    
+    margin-left: 80px;
+    width: calc(100% - 80px);
+    
+    align-items: center;
+}
+
+.containers
+{
+    border-radius: 20px;
+}
+
+.raised
+{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4),
+                0 0 20px 0 rgba(0, 0, 0, 0.4) inset;
+    
+    backdrop-filter: brightness(120%);
+}
+
+#mainContainer
+{
+    width: 1500px;
+    height: 750px;
+    margin-top: 20px;
+}
+
+footer
+{
+    margin-top: auto;
+    width: calc(100% - 80px);
+    height: 400px;
+}
+
+#blurElement
+{
+    z-index: 4;
+    position: fixed;
+    
+    width: 100%;
+    height: 100%;
+    
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: none;
+    
+    transition: backdrop-filter 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), background 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        
+    pointer-events: none;
+}
+
+h1, h2, h3, p
+{
+    font-family: "Encode Sans Expanded", sans-serif;
+    color: white;
+    font-weight: 100;
+    
+    width: fit-content;
+}
+
+.darkText
+{
+    p
+    {
+        color: black;
+        font-weight: 200;
+        text-align: center;   
+    }
+    a
+    {
+        color: black;
+    }
+}
+
+figure
+{
+    font-size: small;
+}
+
+footer
+{
+    position: relative;
+    display: grid;
+
+    width: 100%;
+    min-height: 410px;
+    
+    > div
+    {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 80% 20%;
+        column-gap: 1px;
+        row-gap: 1px;
+        
+        place-self: center;
+        
+        width: 70%;
+        height: 100%;
+        
+        
+    
+        
+        #copyright
+        {
+            grid-column: 1 / -1;
+            color: white;
+            text-align: center;
+        }
+    }
+}
+
+.footerBox
+{
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    
+}
+
+@media only screen and (max-width: 600px)
+{
+    footer > div
+    {
+        grid-template-columns: 1fr;
+        grid-template-rows: 22% 22% 22% 22% 12%;
+    }
+}
+
+.title
+{
+    font-size: 4rem;
+}

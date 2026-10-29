@@ -1,0 +1,101 @@
+body
+{
+    display: flex;
+    flex-direction: row;
+    
+    background-color: #22223B;
+    min-height: 100vh;
+    
+    p
+    {
+        font-size: 1.1rem;
+    }
+}
+
+main a
+{
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+h1
+{
+    margin: 50px 30% 0 0;
+    font-weight: 500;
+}
+
+footer
+{
+    backdrop-filter: brightness(75%);
+    a
+    {
+        border-radius: 10px;
+        transition: box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1), backdrop-filter 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    a:hover
+    {
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4),
+                    0 0 20px 0 rgba(0, 0, 0, 0.4) inset;
+    
+        backdrop-filter: brightness(120%);
+    }
+}
+
+
+form
+{
+    display: flex;
+    flex-direction: column;
+    
+    border: 2px solid white;
+    border-radius: 20px;
+    color: white;
+    
+    min-width: 300px;
+    width: 50vw;
+    
+    padding: 30px 30px 80px 30px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    
+    font-family: "Encode Sans Expanded", sans-serif;
+    
+    align-items: center;
+    
+    background: linear-gradient(
+    to bottom,
+    #22223B 0%,
+    #9A8C98 50%,
+    #4A4E69 66%,
+    #22223B 99%
+    );
+}
+
+input
+{
+    height: 60px;
+}
+
+label
+{
+    margin-top: 50px;
+    font-size: 1.5rem;
+}
+
+#message
+{
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+input, #message
+{
+    color: white;
+    width: 60%;
+    border-radius: 15px;
+    
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    filter: brightness(70%);
+}

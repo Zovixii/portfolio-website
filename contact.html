@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Metadata -->
+        <meta charset="UTF-8" />
+        <title>The Design Experience - Contact</title>
+        <!-- Please remember to put a website logo w favicon -->
+        
+        <!-- Additional resources -->
+        <link rel="stylesheet" href="reset.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="contact.css" />
+        <link rel="stylesheet" href="mobile.css" />
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <a href="./index.html"><img src="./Images/zovixinobg.png" alt="Website Logo" id="websiteLogo"></a>
+            <div id="buttonsContainer">
+                
+                <span>
+                <a class="doNotSeparate short">H</a>
+                    <a class="doNotSeparate long" href="./index.html">Home</a>
+                </span>
+                <br>
+                <span>
+                    <a class="short">G</a>
+                    <a class="long" href="./gallery.html">Gallery</a>
+                </span>
+                <br>
+                <span>
+                    <a class="short">T</a>
+                    <a class="long" href="./timeline.html">Timeline</a>
+                </span>
+                <br>
+                <span>
+                    <a class="short">C</a>
+                    <a class="long" href="./contact.html">Contact</a>
+                </span>
+
+            </div>
+        </header>
+        
+        
+        
+        <main>
+            <h1 class="title alignLeft">Contact</h1>
+            
+            <form id="contactBox">
+                <label for="name">Name</label><br>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="lname">Email</label><br>
+                <input type="text" id="email" name="email"><br><br>
+                <label for="lname">Message</label><br>
+                <textarea type="text" id="message" name="message"></textarea><br><br>
+                <input type="submit" value="Mosaic">
+            </form>
+            
+            
+            
+            <footer class="noHover" id="footer">
+                <div class="noHover">
+                    <div class="footerBox"><p class="noHover"><a href="./index.html">Home</a><br><a href="./gallery.html">Gallery</a><br><a href="./timeline.html">Timeline</a><br><a href="./contact.html">Contact</a></p></div>
+                    <div class="footerBox"><p class="noHover"><a href="./contact.html">Contact Me</a></p></div>
+                    <div class="footerBox"><p class="noHover"><a>Instagram: @mateoberry.a</a><br><a>Discord: Zovixi</a></p></div>
+                    <div id="copyright" class="noHover">&copy;Mateo Berry, All rights reserved. The material on this site may not be reproduced, distributed, transmitted, cached or otherwise used, except with the prior written permission of Mateo Berry.</div>
+                </div>
+            </footer>
+        </main>
+        
+        <div id="blurElement"></div>
+        
+        <!-- A common mistake is to implement the script in the header, I was taught to implement it at the bottom of the body because some scripts utilize objects which need to exist before the script can initialize -->
+        <script src="script.js"></script>
+    </body>
+</html>

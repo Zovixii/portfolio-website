@@ -1,0 +1,116 @@
+body
+{
+    display: flex;
+    flex-direction: row;
+    
+    background: linear-gradient(
+    to bottom,
+    #22223B 0% 26.5%,
+    #9A8C98 26.5% 65%,
+    #4A4E69 50% 87%,
+    #22223B 75% 90%
+    );
+    
+    p
+    {
+        font-size: 1.1rem;
+    }
+}
+
+#containerBimage
+{
+    width: 40%;
+    float: left;
+}
+
+.cardImage
+{
+    height: 50%;
+    margin: 0 auto 15px auto;
+    border-radius: 20px;
+}
+
+#informationContainer
+{
+    margin-top: 100px;
+    width: 1500px;
+    height: 600px;
+}
+
+#contactContainer
+{
+    display: flex;
+    flex-direction: column;
+    
+    width: 1500px;
+    height: 500px;
+    
+    border: 1px solid white;
+    
+    justify-content: center;
+    align-items: center;
+    
+    margin-bottom: 100px;
+}
+
+#contactHeading1
+{
+    font-size: 5rem;
+    
+    margin: 0 auto;
+}
+#contactReference
+{
+    font-size: 2rem;
+    margin: auto;
+}
+
+#cardContainer
+{
+    margin-top: 100px;
+    height: 600px;
+    width: 1500px;
+    
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-column-gap: 20px;
+    
+    overflow: hidden;
+    
+    > div
+    {   
+        padding: 20px;
+    }
+}
+
+main a
+{
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+#frontScreenshot
+{
+    border-radius: 20px;
+    height: 500px;
+    float: right;
+}
+
+main *:not(.noHover)
+{
+    transition: box-shadow 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+    border-radius: 20px;
+    &:hover
+    {
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4),
+                    0 0 20px 0 rgba(0, 0, 0, 0.4) inset;
+    
+        backdrop-filter: brightness(120%);
+    }
+}
+
+figcaption
+{
+    text-align: center;
+}

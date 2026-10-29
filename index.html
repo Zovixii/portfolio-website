@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Metadata -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Design Experience</title>
+        <!-- Please remember to put a website logo w favicon -->
+        
+        <!-- Additional resources -->
+        <link rel="stylesheet" href="reset.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="index.css" />
+        <link rel="stylesheet" href="mobile.css" />
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <a href="./index.html"><img src="./Images/zovixinobg.png" alt="Website Logo" id="websiteLogo"></a>
+            <div id="buttonsContainer">
+                
+                <span>
+                <a class="doNotSeparate short" href="./index.html">H</a>
+                    <a class="doNotSeparate long" href="./index.html">Home</a>
+                </span>
+                <br>
+                <span>
+                    <a class="short" href="./gallery.html">G</a>
+                    <a class="long" href="./gallery.html">Gallery</a>
+                </span>
+                <br>
+                <span>
+                    <a class="short" href="./timeline.html">T</a>
+                    <a class="long" href="./timeline.html">Timeline</a>
+                </span>
+                <br>
+                <span>
+                    <a class="short" href="./contact.html">C</a>
+                    <a class="long" href="./contact.html">Contact</a>
+                </span>
+
+            </div>
+        </header>
+        
+        
+        
+        <main>
+            <div class="containers noHover" id="mainContainer">
+                <h1 class="title">The Design Experience</h1>
+                <img src="Images/frontScreenshot.png" alt="A web user interface element with softly raised edges" id="frontScreenshot" class="raised">
+                <h2>Hello! My name is Mateo Berry, I am a front-end website developer.</h2>
+                <br/><br><br><br>
+                <h3>I specialize in CSS, specifically neumorphic and glass design. </h3><br>
+                <h3>For this website, I wanted to use a mix between glass, neumorph and modern design. I also wanted to throw in a bit of mosaic if possible since that's a style that interests me. If you like what you see, don't be afraid to <a href="#footer">Contact Me!</a></h3>
+            </div>
+            
+            <div class="containers noHover darkText" id="cardContainer">
+                
+                <div>
+                    <figure>
+                        <img src="Images/cardA.jpg" alt="Neumorphic design example" class="cardImage">
+                        <figcaption><a href="https://commons.wikimedia.org/wiki/File:Neumorphism-fixed.jpg">Awesomecat</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</figcaption>
+                    </figure>
+                    <p><strong>Neumorphic</strong> design entails a focus on soft shadows to make it look like the object is "popping" out of the page. It's one of my favorite aspects of design because of how clean it is.</p>
+                </div>
+                
+                <div>
+                    <figure>
+                        <img src="Images/Glassmorphism-scaled.jpg" alt="Glassmorphic design example" class="cardImage">
+                        <figcaption>Copyright: Mithun Mitra, Credit: Mithun Mitra, Creator: Mithun Mitra</figcaption>
+                    </figure>
+                    <p><strong>Glassmorphic</strong> design focuses on transparent, almost frosted glass elements. I love this in combination with neumorphism because it can make designs look extraordinarily clean, making the layout almost feel floatey or made of glass.</p>
+                </div>
+                
+                <div>
+                    <figure>
+                        <img src="Images/modern.webp" alt="Modern design example" class="cardImage">
+                        <figcaption><a href="https://dribbble.com/shots/27357269-Real-Estate-Website-Design-Vertex">Phenomenom Labs</a></figcaption>
+                    </figure>
+                    <p><strong>Modern</strong> design stromgly emphasizes a clean, empty design. A lot of the "design" that comes from modern design is the use of colors, borders, images, and mosaic arrangements.</p>
+                </div>
+                
+            </div>
+            
+            <div class="containers noHover darkText" id="informationContainer">
+                <img src="Images/containerBimage.png" alt="A screenshot of an HTML/CSS web development certification, issued by credly." id="containerBimage">
+                <p>As a part of my education in web development, I was issued an IT Specialist certification for HTML and CSS after passing a class called Advanced Computing Concepts, where advanced HTML and CSS was taught and proctored. I achieved the highest score in my class, and went on to continue studying computer sciences in Sweden.</p>
+                <br>
+                <p>You can find a link to my certification <a>here</a></p>
+            </div>
+            
+            <div class="containers noHover" id="contactContainer">
+                <h1 id="contactHeading1">Ready to get started?</h1>
+                <h2 id="contactReference">You can find my contact information <a href="./contact.html">here</a></h2>
+            </div>
+            
+            <footer class="noHover" id="footer">
+                <div class="noHover">
+                    <div class="footerBox"><p class="noHover"><a href="./index.html">Home</a><br><a href="./gallery.html">Gallery</a><br><a href="./timeline.html">Timeline</a><br><a href="./contact.html">Contact</a></p></div>
+                    <div class="footerBox"><p class="noHover"><a href="./contact.html">Contact Me</a></p></div>
+                    <div class="footerBox"><p class="noHover"><a>Instagram: @mateoberry.a</a><br><a>Discord: Zovixi</a></p></div>
+                    <div id="copyright" class="noHover">&copy;Mateo Berry, All rights reserved. The material on this site may not be reproduced, distributed, transmitted, cached or otherwise used, except with the prior written permission of Mateo Berry. Mosaic</div>
+                </div>
+            </footer>
+        </main>
+        
+        <div id="blurElement"></div>
+        
+        <!-- A common mistake is to implement the script in the header, I was taught to implement it at the bottom of the body because some scripts utilize objects which need to exist before the script can initialize -->
+        <script src="script.js"></script>
+    </body>
+</html>
