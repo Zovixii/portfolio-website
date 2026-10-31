@@ -117,3 +117,16 @@ form.addEventListener("submit", function(event)
         }
     }
 });
+
+
+//comment counter
+const message = document.getElementById("message");
+const counter = document.getElementById("counter");
+
+message.addEventListener("input", () => {
+    const length = message.value.length;
+
+    counter.textContent = `${length} / 15 characters minimum`;
+
+    counter.style.color = length >= 15 ? "lightgreen" : "red";
+});
