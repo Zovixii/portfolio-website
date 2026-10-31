@@ -115,18 +115,26 @@ form.addEventListener("submit", function(event)
             element.classList.remove("redBorder")
             element.classList.add("greenBorder");
         }
+
+        setTimeout(() =>
+        {
+            document.getElementById("contactBox").reset();
+            for(const element of elements)
+            {
+                element.classList.remove("greenBorder")
+            }
+            updateCounter();
+        }, 4000)
     }
 });
 
 
 //comment counter
-const message = document.getElementById("message");
-const counter = document.getElementById("counter");
-
-message.addEventListener("input", () => {
+function updateCounter() {
     const length = message.value.length;
 
-    counter.textContent = `${length} / 15 characters minimum`;
-
+    counter.textContent = `{length} / 15 characters minimum`;
     counter.style.color = length >= 15 ? "lightgreen" : "red";
-});
+}
+
+message.addEventListener("input", updateCounter);
