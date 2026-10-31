@@ -133,8 +133,9 @@ form.addEventListener("submit", function(event)
 function updateCounter() {
     const length = message.value.length;
 
-    counter.textContent = `{length} / 15 characters minimum`;
+    counter.textContent = `${length} / 15 characters minimum`;
     counter.style.color = length >= 15 ? "lightgreen" : "red";
+
 }
 
 message.addEventListener("input", updateCounter);
