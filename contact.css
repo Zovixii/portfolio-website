@@ -86,10 +86,14 @@ label
 #message
 {
     height: 200px;
-    margin-bottom: 20px;
 }
 
-input, #message
+select
+{
+    height: 60px;
+}
+
+input, #message, select
 {
     color: white;
     width: 60%;
@@ -98,4 +102,9 @@ input, #message
     background-color: transparent;
     backdrop-filter: blur(20px);
     filter: brightness(70%);
+}
+
+#website
+{
+    margin-bottom: 60px;
 }

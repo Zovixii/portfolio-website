@@ -226,3 +226,24 @@ footer
 {
     font-size: 4rem;
 }
+
+.hidden
+{
+    display: none;
+}
+
+.red
+{
+    color: red;
+    font-weight: 300;
+}
+
+.redBorder
+{
+    border: red;
+}
+
+.greenBorder
+{
+    border: green;
+}

@@ -50,12 +50,31 @@
             <h1 class="title alignLeft">Contact</h1>
             
             <form id="contactBox">
-                <label for="name">Name</label><br>
+                <label for="name">Full Name</label><br>
                 <input type="text" id="name" name="name"><br><br>
-                <label for="lname">Email</label><br>
+                <p class="hidden red" id="nameErrorText">Name must be at least 2 characters!</p>
+                
+                <label for="email">Email Address</label><br>
                 <input type="text" id="email" name="email"><br><br>
-                <label for="lname">Message</label><br>
-                <textarea type="text" id="message" name="message"></textarea><br><br>
+                <p class="hidden red" id="emailErrorText">Invalid Email Address!</p>
+                
+                <label for="topic">Topic of interest</label><br>
+                <select id="topic" name="topic">
+                    <option value="none" selected disabled>Pick one</option>
+                    <option value="computerScience">Computer Science</option>
+                    <option value="website">Website Production</option>
+                    <option value="videogames">Videogames</option>
+                </select>
+                <p class="hidden red" id="dropdownErrorText">You must pick one option!</p>
+                
+                <label for="message">Message/Comments</label><br>
+                <textarea type="text" id="message" name="message"></textarea>
+                <p class="hidden red" id="messageErrorText">Must be at least 15 characters!</p><br><br>
+                
+                <label for="website">Website</label><br>
+                <input type="url" id="website" name="website"><br><br>
+                <p class="hidden red" id="websiteErrorText">Must be a valid URL!</p><br><br>
+                
                 <input type="submit" value="Mosaic">
             </form>
             
