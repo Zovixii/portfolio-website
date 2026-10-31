@@ -93,7 +93,7 @@ select
     height: 60px;
 }
 
-input, #message, select
+input, #message, select, button
 {
     color: white;
     width: 60%;
@@ -107,4 +107,11 @@ input, #message, select
 #website
 {
     margin-bottom: 60px;
+}
+
+button
+{
+    margin-top: 20px;
+    height: 50px;
+    width: 30%;
 }
