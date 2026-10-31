@@ -124,13 +124,16 @@ form.addEventListener("submit", function(event)
                 element.classList.remove("greenBorder")
             }
             updateCounter();
+
+            formStatus.textContent = "";
         }, 4000)
     }
 });
 
 
 //comment counter
-function updateCounter() {
+function updateCounter()
+{
     const length = message.value.length;
 
     counter.textContent = `${length} / 15 characters minimum`;
@@ -139,3 +142,5 @@ function updateCounter() {
 }
 
 message.addEventListener("input", updateCounter);
+
+document.getElementById("resetFomr").addEventListener("click", updateCounter)
