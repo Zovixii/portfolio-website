@@ -26,6 +26,9 @@ form.addEventListener("submit", function(event)
     {
         valid = false;
         document.getElementById("nameErrorText").classList.remove("hidden");
+
+        document.getElementById("name").classList.remove("greenBorder")
+        document.getElementById("name").classList.add("redBorder")
     }
     else
     {
@@ -37,6 +40,9 @@ form.addEventListener("submit", function(event)
     {
         valid = false
         document.getElementById("emailErrorText").classList.remove("hidden");
+
+        document.getElementById("email").classList.remove("greenBorder")
+        document.getElementById("email").classList.add("redBorder")
     }
     else
     {
@@ -48,6 +54,9 @@ form.addEventListener("submit", function(event)
     {
         valid = false
         document.getElementById("dropdownErrorText").classList.remove("hidden");
+
+        document.getElementById("topic").classList.remove("greenBorder")
+        document.getElementById("topic").classList.add("redBorder")
     }
     else
     {
@@ -59,6 +68,9 @@ form.addEventListener("submit", function(event)
     {
         valid = false
         document.getElementById("messageErrorText").classList.remove("hidden");
+
+        document.getElementById("message").classList.remove("greenBorder")
+        document.getElementById("message").classList.add("redBorder")
     }
     else
     {
@@ -69,11 +81,15 @@ form.addEventListener("submit", function(event)
     if(website == "")
     {
         document.getElementById("websiteErrorText").classList.add("hidden");
+
     }
     else if(!website.checkValidity())
     {
         valid = false
         document.getElementById("websiteErrorText").classList.remove("hidden");    
+
+        document.getElementById("website").classList.remove("greenBorder")
+        document.getElementById("website").classList.add("redBorder")
     }
     else
     {
@@ -83,10 +99,21 @@ form.addEventListener("submit", function(event)
     if(valid == false)
     {
         console.log("false alert!!")
-        event.preventDefault();    
+        event.preventDefault();
     }
     else
     {
+        event.preventDefault();
+
         formStatus.textContent = `Thanks for your feedback, ${name}`;
+
+        //turns all borders to green upon successful validations
+        const elements = document.getElementsByClassName("formElement");
+
+        for (const element of elements)
+        {
+            element.classList.remove("redBorder")
+            element.classList.add("greenBorder");
+        }
     }
 });

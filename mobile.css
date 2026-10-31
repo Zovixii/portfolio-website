@@ -4,12 +4,31 @@
     {
         font-size: 3rem;
         max-width: 50px !important;
+        min-width: 0;
         
         max-height: 100vh;
         
         &:hover
         {
-            max-width: 100px !important;
+            max-width: 50px;
+
+            backdrop-filter: brightness(200%);
+            width: 200px;
+            .short
+            {
+                display: none;
+            }
+            .long
+            {
+                display: inline;
+            }
+            ~ #blurElement
+            {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+
+                background: rgba(0, 0, 0, 0.5);
+            }
         }
     }
 }

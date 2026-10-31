@@ -240,10 +240,15 @@ footer
 
 .redBorder
 {
-    border: red;
+    border-color: red !important;
 }
 
 .greenBorder
 {
-    border: green;
+    border-color: lightgreen !important;
+}
+
+@media only screen and (max-width: 610px)
+{
+
 }
