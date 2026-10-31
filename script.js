@@ -14,7 +14,7 @@ form.addEventListener("submit", function(event)
     const topic = formData.get("topic")
     const message = formData.get("message")
     const website = document.getElementById("website");
-    
+    const formStatus = document.querySelector("#form-status");
     
     
     
@@ -84,5 +84,9 @@ form.addEventListener("submit", function(event)
     {
         console.log("false alert!!")
         event.preventDefault();    
+    }
+    else
+    {
+        formStatus.textContent = `Thanks for your feedback, ${name}`;
     }
 });
