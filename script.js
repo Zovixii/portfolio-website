@@ -143,4 +143,4 @@ function updateCounter()
 
 message.addEventListener("input", updateCounter);
 
-document.getElementById("resetFomr").addEventListener("click", updateCounter)
+document.getElementById("resetForm").addEventListener("click", updateCounter)
