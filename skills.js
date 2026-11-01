@@ -39,6 +39,7 @@ window.addEventListener("DOMContentLoaded", () =>
             removeFilterButtonActiveState()
 
             button.classList.add("filterButtonActive")
+            button.setAttribute("aria-pressed", "true");
 
             categoryFilter = button.innerText;
             reloadList(Skills, categoryFilter, sortFilter)
@@ -53,6 +54,7 @@ window.addEventListener("DOMContentLoaded", () =>
             removeSortButtonActiveState()
 
             button.classList.add("sortButtonActive")
+            button.setAttribute("aria-pressed", "true");
 
             sortFilter = button.innerText
             reloadList(Skills, categoryFilter, sortFilter)
@@ -64,6 +66,7 @@ window.addEventListener("DOMContentLoaded", () =>
         for(let i = 0; i < 4; i++)
         {
             filterButtons[i].classList.remove("filterButtonActive")
+            filterButtons[i].setAttribute("aria-pressed", "false");
         }
     }
 
@@ -72,6 +75,7 @@ window.addEventListener("DOMContentLoaded", () =>
         for(let i = 0; i < 3; i++)
         {
             sortButtons[i].classList.remove("sortButtonActive")
+            sortButtons[i].setAttribute("aria-pressed", "false");
         }
     }
 })
