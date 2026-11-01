@@ -129,13 +129,13 @@ function reloadList(Skills, categoryFilter, sortFilter)
         )
          .sort((a, b) => {
             switch (sortFilter) {
-                case "proficiency":
+                case "Proficiency":
                     return b.proficiency - a.proficiency;
 
-                case "experience":
+                case "Experience":
                     return b.experience - a.experience;
 
-                case "name":
+                case "Name":
                     return a.name.localeCompare(b.name);
 
                 default:
