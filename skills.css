@@ -220,3 +220,38 @@ footer
         background-color: rgba(25, 25, 25, 1);
     }
 }
+
+#skillCards
+{
+    padding: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    background-color: rgba(15, 15, 15, 1);
+    height: 85%;
+
+    border-radius: 15px;
+
+    overflow: scroll;
+}
+
+.skillCard
+{
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 2px;
+
+    transition: background-color 0.2s ease-out;
+    &:hover
+    {
+        background-color: rgba(25, 25, 25, 1);
+    }
+}
+
+.cardTitle
+{
+    font-weight: 500;
+    font-size: 1.5rem;
+}
