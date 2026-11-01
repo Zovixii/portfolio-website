@@ -79,6 +79,8 @@ window.addEventListener("DOMContentLoaded", () =>
 let categoryFilter = "All";
 let sortFilter = "Name";
 
+let showedSkills = 0;
+
 
 class Skill
 {
@@ -108,6 +110,7 @@ const Skills =
 
 function reloadList(Skills, categoryFilter, sortFilter)
 {
+    showedSkills = 0;
     const container = document.getElementById("skillCards")
 
     while (container.firstChild)
@@ -142,6 +145,8 @@ function reloadList(Skills, categoryFilter, sortFilter)
 
         filteredSkills.forEach(skill =>
         {
+            showedSkills++;
+
             const card = document.createElement("div")
             card.classList.add("skillCard")
 
@@ -174,5 +179,6 @@ function reloadList(Skills, categoryFilter, sortFilter)
             container.appendChild(card)
         })
 
+    document.getElementById("showCounter").innerHTML = `Currently showing ${showedSkills} out of 8 cards.`
     console.log("Cards have been reloaded.")
 }
