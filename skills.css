@@ -239,6 +239,8 @@ footer
 
 .skillCard
 {
+    display: flex;
+    flex-direction: column;
     border: 1px solid white;
     border-radius: 15px;
     padding: 2px;
@@ -284,4 +286,27 @@ footer
     {
         background-color: royalblue;
     }
+}
+
+.dot
+{
+    border: 1px solid white;
+    border-radius: 15px;
+
+    width: 45px;
+    height: 40px;
+    margin: auto;
+}
+.activeDot
+{
+    background-color: dodgerblue;
+}
+
+.proficiencyMeter
+{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 40px;
+    margin: auto auto 15px auto;
 }
