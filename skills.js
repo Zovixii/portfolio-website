@@ -2,26 +2,56 @@ window.addEventListener("DOMContentLoaded", () =>
 {
     const initButton = document.getElementById("initButton");
     const skillsBox = document.getElementById("skillsBox");
+    const allFilterButton = document.getElementById("filterAll")
+    const techFilterButton = document.getElementById("filterTech")
+    const gamingFilterButton = document.getElementById("filterGaming")
+    const musicFilterButton = document.getElementById("filterMusic")
+
+    const filterButtons = [allFilterButton, techFilterButton, gamingFilterButton, musicFilterButton]
 
     reloadList(Skills, categoryFilter, sortFilter)
+
+    // Initial button to run the animation
+    initButton.addEventListener("click", function(event)
+    {
+        initButton.classList.add("blackedOut", "disappear")
+        setTimeout(() =>
+        {
+            initButton.classList.add("hidden");
+        }, 1000)
+        setTimeout(() =>
+        {
+            reloadList(Skills, categoryFilter, sortFilter)
+        }, 2000)
+        skillsBox.classList.add("transformed")
+    })
+
+    // Filter buttons specificity filter
+    filterButtons.forEach(button =>
+    {
+        button.addEventListener("click", () =>
+        {
+            removeFilterButtonActiveState()
+
+            button.classList.add("filterButtonActive")
+
+            categoryFilter = button.innerText;
+            reloadList(Skills, categoryFilter, sortFilter)
+        })
+    })
+
+    function removeFilterButtonActiveState()
+    {
+        for(let i = 0; i < 4; i++)
+        {
+            filterButtons[i].classList.remove("filterButtonActive")
+        }
+    }
 })
 
-let categoryFilter = "all";
+let categoryFilter = "All";
 let sortFilter = "name";
 
-initButton.addEventListener("click", function(event)
-{
-    initButton.classList.add("blackedOut", "disappear")
-    setTimeout(() =>
-    {
-        initButton.classList.add("hidden");
-    }, 1000)
-    setTimeout(() =>
-    {
-        reloadList(Skills, categoryFilter, sortFilter)
-    }, 2000)
-    skillsBox.classList.add("transformed")
-})
 
 class Skill
 {
@@ -58,37 +88,47 @@ function reloadList(Skills, categoryFilter, sortFilter)
         container.removeChild(container.lastChild)
     }
 
-    Skills.forEach(skill =>
-    {
-        const card = document.createElement("div")
-        card.classList.add("skillCard")
 
-        card.innerHTML =
-        `
-            <p class="cardTitle">${skill.name}</p>
-            <p>Category: ${skill.category}</p>
-            <p>Experience: ${skill.experience} years</p>
-            <p>${skill.description}</p>
-
-            <div class="proficiencyMeter">
-                <span>${skill.proficiency}/5</span>
-            </div>
-        `
-
-        const dotsContainer = card.querySelector(".proficiencyMeter");
-
-        for(let i = 1; i < 5; i++)
+    Skills
+        .filter
+        (
+        skill =>
+            categoryFilter === "All" ||
+            skill.category === categoryFilter
+        )
+        .forEach(skill =>
         {
-            const dot = document.createElement("span")
-            dot.classList.add("dot");
+            const card = document.createElement("div")
+            card.classList.add("skillCard")
 
-            if(i <= skill.proficiency)
+            card.innerHTML =
+            `
+                <p class="cardTitle">${skill.name}</p>
+                <p>Category: ${skill.category}</p>
+                <p>Experience: ${skill.experience} years</p>
+                <p>${skill.description}</p>
+
+                <div class="proficiencyMeter">
+                    <span>${skill.proficiency}/5</span>
+                </div>
+            `
+
+            const dotsContainer = card.querySelector(".proficiencyMeter");
+
+            for(let i = 1; i < 5; i++)
             {
-                dot.classList.add("activeDot")
-            }
+                const dot = document.createElement("span")
+                dot.classList.add("dot");
 
-            dotsContainer.appendChild(dot)
-        }
-        container.appendChild(card)
-    })
+                if(i <= skill.proficiency)
+                {
+                    dot.classList.add("activeDot")
+                }
+
+                dotsContainer.appendChild(dot)
+            }
+            container.appendChild(card)
+        })
+
+    console.log("Cards have been reloaded.")
 }
