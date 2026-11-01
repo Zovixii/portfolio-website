@@ -1,0 +1,84 @@
+body
+{
+    display: flex;
+    flex-direction: row;
+
+    background: rgba(25, 25, 25, 1);
+
+    p
+    {
+        font-size: 1.1rem;
+    }
+}
+
+main
+{
+    height: 150vh;
+
+    border: 1px dashed white;
+}
+
+footer
+{
+    background: rgba(15, 15, 15, 1);
+
+    a
+    {
+        color: white;
+        text-decoration: none;
+
+        transition: text-shadow ease-in 0.2s;
+        &:hover
+        {
+            text-shadow:
+                0.5px 0 0 white,
+                -0.5px 0 0 white,
+                0 0.5px 0 white,
+                0 -0.5px 0 white;
+        }
+    }
+}
+
+#initButton
+{
+    position: absolute;
+
+    inset: 0;
+    place-self: center;
+
+    background-color: cornflowerblue;
+    border: none;
+    border-radius: 15px;
+
+    height: 50px;
+    width: 20vw;
+
+    color: white;
+    font-family: "Encode Sans Expanded", sans-serif;
+
+    transition: background-color ease-out 0.2s;
+    &:hover
+    {
+        background-color: royalblue;
+    }
+}
+
+#skillsBox
+{
+    position: absolute;
+
+    inset: 0;
+    place-self: center;
+
+    height: 50px;
+    width: 20vw;
+
+    border: 1px solid white;
+    border-radius: 15px;
+}
+
+#initButton.blackedOut
+{
+    background-color: black;
+    transition: background-color 0.4s ease-in;
+}
