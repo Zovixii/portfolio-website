@@ -230,6 +230,7 @@ footer
 .hidden
 {
     display: none;
+    pointer-events: none;
 }
 
 .red

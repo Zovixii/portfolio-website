@@ -13,9 +13,7 @@ body
 
 main
 {
-    height: 150vh;
-
-    border: 1px dashed white;
+    height: 180vh;
 }
 
 footer
@@ -41,6 +39,8 @@ footer
 
 #initButton
 {
+
+    z-index: 5;
     position: absolute;
 
     inset: 0;
@@ -61,10 +61,13 @@ footer
     {
         background-color: royalblue;
     }
+
+    opacity: 1;
 }
 
 #skillsBox
 {
+    z-index: 4;
     position: absolute;
 
     inset: 0;
@@ -81,4 +84,101 @@ footer
 {
     background-color: black;
     transition: background-color 0.4s ease-in;
+}
+
+#initButton.disappear
+{
+    opacity: 0;
+
+    transition: opacity 0.5s ease-in-out;
+}
+
+#skillsBox.transformed
+{
+    animation: expand 1.4s cubic-bezier(0.215, 0.610, 0.355, 1) 0.25s both;
+}
+
+@keyframes expand
+{
+    0%
+    {
+      opacity: 1;
+      width: 20vw;
+      height: 50px;
+    }
+
+    /* widen */
+    45%
+    {
+      opacity: 1;
+      width: 60vw;;
+      height: 50px;
+    }
+
+    /* pause */
+    60%
+    {
+      width: 60vw;
+      height: 50px;
+    }
+
+    /* heighten */
+    100%
+    {
+      opacity: 1;
+      width: 60vw;
+      height: 1000px;
+    }
+  }
+
+
+@media only screen and (max-width: 610px)
+{
+    footer
+    {
+        width: 100vw;
+    }
+
+    #initButton
+    {
+        width: 50vw;
+    }
+
+    #skillsBox
+    {
+        width: 50vw;
+    }
+
+    @keyframes expand
+    {
+        0%
+        {
+          opacity: 1;
+          width: 50vw;
+          height: 50px;
+        }
+
+        /* widen */
+        45%
+        {
+          opacity: 1;
+          width: 60vw;;
+          height: 50px;
+        }
+
+        /* pause */
+        60%
+        {
+          width: 60vw;
+          height: 50px;
+        }
+
+        /* heighten */
+        100%
+        {
+          opacity: 1;
+          width: 60vw;
+          height: 1000px;
+        }
+    }
 }
