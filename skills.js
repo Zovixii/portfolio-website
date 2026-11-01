@@ -7,7 +7,12 @@ window.addEventListener("DOMContentLoaded", () =>
     const gamingFilterButton = document.getElementById("filterGaming")
     const musicFilterButton = document.getElementById("filterMusic")
 
+    const nameSortButton = document.getElementById("nameSort")
+    const proficiencySortButton = document.getElementById("nameSort")
+    const experienceSortButton = document.getElementById("experienceSort")
+
     const filterButtons = [allFilterButton, techFilterButton, gamingFilterButton, musicFilterButton]
+    const sortbuttons = [nameSortButton, proficiencySortButton, experienceSortButton]
 
     reloadList(Skills, categoryFilter, sortFilter)
 
@@ -40,6 +45,15 @@ window.addEventListener("DOMContentLoaded", () =>
         })
     })
 
+    // Sort buttons specificity function
+    sortButtons.forEach(button =>
+    {
+        button.addEventListener("click", () =>
+        {
+
+        })
+    })
+
     function removeFilterButtonActiveState()
     {
         for(let i = 0; i < 4; i++)
@@ -47,10 +61,18 @@ window.addEventListener("DOMContentLoaded", () =>
             filterButtons[i].classList.remove("filterButtonActive")
         }
     }
+
+    function removeSortButtonActiveState()
+    {
+        for(let i = 0; i < 3; i++)
+        {
+            sortButtons[i].classList.remove("sortButtonActive")
+        }
+    }
 })
 
 let categoryFilter = "All";
-let sortFilter = "name";
+let sortFilter = "Name";
 
 
 class Skill
@@ -90,13 +112,30 @@ function reloadList(Skills, categoryFilter, sortFilter)
 
 
     Skills
+        const filteredSkills = Skills
         .filter
         (
         skill =>
             categoryFilter === "All" ||
             skill.category === categoryFilter
         )
-        .forEach(skill =>
+         .sort((a, b) => {
+            switch (sortFilter) {
+                case "proficiency":
+                    return b.proficiency - a.proficiency;
+
+                case "experience":
+                    return b.experience - a.experience;
+
+                case "name":
+                    return a.name.localeCompare(b.name);
+
+                default:
+                    return 0;
+                }
+            });
+
+        filteredSkills.forEach(skill =>
         {
             const card = document.createElement("div")
             card.classList.add("skillCard")
