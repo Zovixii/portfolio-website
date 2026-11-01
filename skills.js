@@ -8,11 +8,11 @@ window.addEventListener("DOMContentLoaded", () =>
     const musicFilterButton = document.getElementById("filterMusic")
 
     const nameSortButton = document.getElementById("nameSort")
-    const proficiencySortButton = document.getElementById("nameSort")
+    const proficiencySortButton = document.getElementById("proficiencySort")
     const experienceSortButton = document.getElementById("experienceSort")
 
     const filterButtons = [allFilterButton, techFilterButton, gamingFilterButton, musicFilterButton]
-    const sortbuttons = [nameSortButton, proficiencySortButton, experienceSortButton]
+    const sortButtons = [nameSortButton, proficiencySortButton, experienceSortButton]
 
     reloadList(Skills, categoryFilter, sortFilter)
 
@@ -50,7 +50,12 @@ window.addEventListener("DOMContentLoaded", () =>
     {
         button.addEventListener("click", () =>
         {
+            removeSortButtonActiveState()
 
+            button.classList.add("sortButtonActive")
+
+            sortFilter = button.innerText
+            reloadList(Skills, categoryFilter, sortFilter)
         })
     })
 
