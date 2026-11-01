@@ -78,6 +78,8 @@ footer
 
     border: 1px solid white;
     border-radius: 15px;
+
+    background-color: rgba(45, 45, 45, 1);
 }
 
 #initButton.blackedOut
@@ -180,5 +182,41 @@ footer
           width: 60vw;
           height: 1000px;
         }
+    }
+}
+
+
+#filterBox
+{
+    border: 1px solid white;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    flex-direction: row;
+
+    height: 15%;
+
+    padding: 10px;
+
+    place-items: center;
+    justify-content: center;
+}
+
+.skillsButtons
+{
+    background: none;
+    border: 1px solid white;
+    border-radius: 15px;
+    color: white;
+
+    font-family: "Encode Sans Expanded", sans-serif;
+
+    margin-right: 15px;
+
+    padding: 5px 20px 5px 20px;
+
+    transition: background-color 0.2s ease-out;
+    &:hover
+    {
+        background-color: rgba(25, 25, 25, 1);
     }
 }
