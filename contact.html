@@ -53,11 +53,11 @@
             <form id="contactBox">
                 <label for="name">Full Name</label><br>
                 <input type="text" id="name" name="name" class="formElement"><br><br>
-                <p class="hidden red" id="nameErrorText">Name must be at least 2 characters!</p>
+                <p class="hidden red errorText" id="nameErrorText">Name must be at least 2 characters!</p>
                 
                 <label for="email">Email Address</label><br>
                 <input type="text" id="email" name="email" class="formElement"><br><br>
-                <p class="hidden red" id="emailErrorText">Invalid Email Address!</p>
+                <p class="hidden red errorText" id="emailErrorText">Invalid Email Address!</p>
                 
                 <label for="topic">Topic of interest</label><br>
                 <select id="topic" name="topic" class="formElement">
@@ -66,16 +66,16 @@
                     <option value="website">Website Production</option>
                     <option value="videogames">Videogames</option>
                 </select>
-                <p class="hidden red" id="dropdownErrorText">You must pick one option!</p>
+                <p class="hidden red errorText" id="dropdownErrorText">You must pick one option!</p>
                 
                 <label for="message">Message/Comments</label><br>
                 <textarea type="text" id="message" name="message" class="formElement"></textarea>
-                <p class="hidden red" id="messageErrorText">Must be at least 15 characters!</p><br><br>
+                <p class="hidden red errorText" id="messageErrorText">Must be at least 15 characters!</p><br><br>
                 <p id="counter">0 / 15 characters minimum</p>
                 
                 <label for="website">Website</label><br>
                 <input type="url" id="website" name="website" class="formElement"><br><br>
-                <p class="hidden red" id="websiteErrorText">Must be a valid URL!</p><br><br>
+                <p class="hidden red errorText" id="websiteErrorText">Must be a valid URL!</p><br><br>
                 
                 <input type="submit" value="Submit" id="submit">
 

@@ -22,7 +22,7 @@ form.addEventListener("submit", function(event)
     //code to check validity
     
     //name
-    if(name.length <= 2)
+    if(name.length < 2)
     {
         valid = false;
         document.getElementById("nameErrorText").classList.remove("hidden");
@@ -139,8 +139,34 @@ function updateCounter()
     counter.textContent = `${length} / 15 characters minimum`;
     counter.style.color = length >= 15 ? "lightgreen" : "red";
 
+    if(length == 0)
+    {
+        counter.style.color = "white"
+    }
+
+}
+
+function fullFormReset()
+{
+    const elements = document.getElementsByClassName("formElement")
+    for (const element of elements)
+    {
+        element.classList.remove("greenBorder")
+        element.classList.remove("redBorder")
+    }
+
+    const errors = document.getElementsByClassName("errorText")
+    for (const error of errors)
+    {
+        error.classList.add("hidden")
+    }
+
+    setTimeout( () =>
+    {
+        updateCounter()
+    }, 30)
 }
 
 message.addEventListener("input", updateCounter);
 
-document.getElementById("resetForm").addEventListener("click", updateCounter)
+document.getElementById("resetForm").addEventListener("click", fullFormReset)
