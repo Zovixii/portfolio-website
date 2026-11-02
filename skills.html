@@ -54,16 +54,16 @@
 
                 <div id="skillsBox">
                     <div id="filterBox">
-                        <button class="skillsButtons filterButtons filterButtonActive" id="filterAll">All</button>
+                        <button class="skillsButtons filterButtons filterButtonActive" id="filterAll" data-category="All" aria-pressed="true">All</button>
                         <div id="skillFilters">
-                            <button class="skillsButtons filterButtons" id="filterTech">Tech</button>
-                            <button class="skillsButtons filterButtons" id="filterGaming">Gaming</button>
-                            <button class="skillsButtons filterButtons" id="filterMusic">Music</button>
+                            <button class="skillsButtons filterButtons" id="filterTech" data-category="Tech" aria-pressed="false">Tech</button>
+                            <button class="skillsButtons filterButtons" id="filterGaming" data-category="Gaming" aria-pressed="false">Gaming</button>
+                            <button class="skillsButtons filterButtons" id="filterMusic" data-category="Music" aria-pressed="false">Music</button>
                         </div>
                         <div id="sortingFilters">
-                            <button class="skillsButtons sortButtons sortButtonActive" id="nameSort">Name</button>
-                            <button class="skillsButtons sortButtons" id="proficiencySort">Proficiency</button>
-                            <button class="skillsButtons sortButtons" id="experienceSort">Experience</button>
+                            <button class="skillsButtons sortButtons sortButtonActive" id="nameSort" aria-pressed="true">Name</button>
+                            <button class="skillsButtons sortButtons" id="proficiencySort" aria-pressed="false">Proficiency</button>
+                            <button class="skillsButtons sortButtons" id="experienceSort" aria-pressed="false">Experience</button>
                         </div>
 
                         <p id="showCounter"></p>

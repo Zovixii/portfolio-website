@@ -29,10 +29,12 @@ form.addEventListener("submit", function(event)
 
         document.getElementById("name").classList.remove("greenBorder")
         document.getElementById("name").classList.add("redBorder")
+        document.getElementById("name").setAttribute("aria-invalid", "true");
     }
     else
     {
         document.getElementById("nameErrorText").classList.add("hidden");
+        document.getElementById("name").setAttribute("aria-invalid", "false");
     }
     
     //email
@@ -43,10 +45,12 @@ form.addEventListener("submit", function(event)
 
         document.getElementById("email").classList.remove("greenBorder")
         document.getElementById("email").classList.add("redBorder")
+        document.getElementById("email").setAttribute("aria-invalid", "true");
     }
     else
     {
         document.getElementById("emailErrorText").classList.add("hidden");
+        document.getElementById("email").setAttribute("aria-invalid", "false");
     }
     
     //dropdown
@@ -57,10 +61,12 @@ form.addEventListener("submit", function(event)
 
         document.getElementById("topic").classList.remove("greenBorder")
         document.getElementById("topic").classList.add("redBorder")
+        document.getElementById("topic").setAttribute("aria-invalid", "true");
     }
     else
     {
         document.getElementById("dropdownErrorText").classList.add("hidden");
+        document.getElementById("topic").setAttribute("aria-invalid", "false");
     }
     
     //message
@@ -71,16 +77,19 @@ form.addEventListener("submit", function(event)
 
         document.getElementById("message").classList.remove("greenBorder")
         document.getElementById("message").classList.add("redBorder")
+        document.getElementById("message").setAttribute("aria-invalid", "true");
     }
     else
     {
         document.getElementById("messageErrorText").classList.add("hidden")
+        document.getElementById("message").setAttribute("aria-invalid", "false");
     }
     
     //website
     if(website == "")
     {
         document.getElementById("websiteErrorText").classList.add("hidden");
+        document.getElementById("website").setAttribute("aria-invalid", "false");
 
     }
     else if(!website.checkValidity())
@@ -90,10 +99,12 @@ form.addEventListener("submit", function(event)
 
         document.getElementById("website").classList.remove("greenBorder")
         document.getElementById("website").classList.add("redBorder")
+        document.getElementById("website").setAttribute("aria-invalid", "true");
     }
     else
     {
         document.getElementById("websiteErrorText").classList.add("hidden");
+        document.getElementById("website").setAttribute("aria-invalid", "false");
     }
     
     if(valid == false)
@@ -105,6 +116,7 @@ form.addEventListener("submit", function(event)
     {
         event.preventDefault();
 
+
         formStatus.textContent = `Thanks for your feedback, ${name}`;
 
         //turns all borders to green upon successful validations
@@ -114,17 +126,13 @@ form.addEventListener("submit", function(event)
         {
             element.classList.remove("redBorder")
             element.classList.add("greenBorder");
+            element.setAttribute("aria-invalid", "false");
         }
+
+        fullFormReset(false);
 
         setTimeout(() =>
         {
-            document.getElementById("contactBox").reset();
-            for(const element of elements)
-            {
-                element.classList.remove("greenBorder")
-            }
-            updateCounter();
-
             formStatus.textContent = "";
         }, 4000)
     }
@@ -146,7 +154,7 @@ function updateCounter()
 
 }
 
-function fullFormReset()
+function fullFormReset(eraseSuccessMessage = true)
 {
     const elements = document.getElementsByClassName("formElement")
     for (const element of elements)
@@ -165,8 +173,17 @@ function fullFormReset()
     {
         updateCounter()
     }, 30)
+
+    if(eraseSuccessMessage == true)
+    {
+        const formStatus = document.querySelector("#form-status");
+        formStatus.textContent = "";
+    }
+
+    form.reset();
 }
 
 message.addEventListener("input", updateCounter);
+
 
 document.getElementById("resetForm").addEventListener("click", fullFormReset)

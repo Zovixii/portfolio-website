@@ -41,7 +41,7 @@ window.addEventListener("DOMContentLoaded", () =>
             button.classList.add("filterButtonActive")
             button.setAttribute("aria-pressed", "true");
 
-            categoryFilter = button.innerText;
+            categoryFilter = button.dataset.category;
             reloadList(Skills, categoryFilter, sortFilter)
         })
     })
@@ -88,13 +88,13 @@ let showedSkills = 0;
 
 class Skill
 {
-    constructor(id, name, category, proficiency, experience, description)
+    constructor(id, name, category, proficiency, yearsExperience, description)
     {
         this.id = id;
         this.name = name;
         this.category = category;
         this.proficiency = proficiency;
-        this.experience = experience;
+        this.yearsExperience = yearsExperience;
         this.description = description;
     }
 }
@@ -137,7 +137,7 @@ function reloadList(Skills, categoryFilter, sortFilter)
                     return b.proficiency - a.proficiency;
 
                 case "Experience":
-                    return b.experience - a.experience;
+                    return b.yearsExperience - a.yearsExperience;
 
                 case "Name":
                     return a.name.localeCompare(b.name);
@@ -157,8 +157,8 @@ function reloadList(Skills, categoryFilter, sortFilter)
             card.innerHTML =
             `
                 <p class="cardTitle">${skill.name}</p>
-                <p>Category: ${skill.category}</p>
-                <p>Experience: ${skill.experience} years</p>
+                <p class="categoryBadge">${skill.category}</p>
+                <p class="experienceTag">Experience: ${skill.yearsExperience} years</p>
                 <p>${skill.description}</p>
 
                 <div class="proficiencyMeter">
@@ -182,6 +182,6 @@ function reloadList(Skills, categoryFilter, sortFilter)
             container.appendChild(card)
         })
 
-    document.getElementById("showCounter").innerHTML = `Currently showing ${showedSkills} out of 8 cards.`
+    document.getElementById("showCounter").innerHTML = `Currently showing ${showedSkills} out of ${Skills.length} cards.`
     console.log("Cards have been reloaded.")
 }
