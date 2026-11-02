@@ -2,7 +2,6 @@ body
 {
     display: flex;
     flex-direction: row;
-
     background: rgba(25, 25, 25, 1);
 
     p
@@ -13,7 +12,7 @@ body
 
 main
 {
-    height: 180vh;
+    min-height: 100vh;
 }
 
 footer
@@ -28,177 +27,119 @@ footer
         transition: text-shadow ease-in 0.2s;
         &:hover
         {
-            text-shadow:
-                0.5px 0 0 white,
-                -0.5px 0 0 white,
-                0 0.5px 0 white,
-                0 -0.5px 0 white;
+            text-shadow: 0.5px 0 0 white, -0.5px 0 0 white, 0 0.5px 0 white, 0 -0.5px 0 white;
         }
     }
 }
 
+#skillsStage
+{
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
 #initButton
 {
-
-    z-index: 5;
-    position: absolute;
-
-    inset: 0;
-    place-self: center;
-
     background-color: cornflowerblue;
     border: none;
     border-radius: 15px;
 
-    height: 50px;
-    width: 20vw;
-
+    min-height: 50px;
+    width: clamp(190px, 25vw, 350px);
+    padding: 10px 16px;
     color: white;
     font-family: "Encode Sans Expanded", sans-serif;
+    cursor: pointer;
 
-    transition: background-color ease-out 0.2s;
+    transition: background-color ease-out 0.2s, opacity 0.25s ease;
+
     &:hover
     {
         background-color: royalblue;
     }
-
-    opacity: 1;
-}
-
-#skillsBox
-{
-    z-index: 4;
-    position: absolute;
-
-    inset: 0;
-    place-self: center;
-
-    height: 50px;
-    width: 20vw;
-
-    border: 1px solid white;
-    border-radius: 15px;
-
-    background-color: rgba(45, 45, 45, 1);
-}
-
-#initButton.blackedOut
-{
-    background-color: black;
-    transition: background-color 0.4s ease-in;
 }
 
 #initButton.disappear
 {
     opacity: 0;
+}
 
-    transition: opacity 0.5s ease-in-out;
+#skillsBox[hidden], #initButton[hidden]
+{
+    display: none !important;
+}
+
+#skillsBox
+{
+    width: min(1180px, 100%);
+    border: 1px solid white;
+    border-radius: 15px;
+    background-color: rgba(45, 45, 45, 1);
+    overflow: hidden;
+}
+
+#skillsContent
+{
+    visibility: hidden;
+    opacity: 0;
+}
+
+#skillsContent.contentVisible
+{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.25s ease-out;
 }
 
 #skillsBox.transformed
 {
-    animation: expand 1.4s cubic-bezier(0.215, 0.610, 0.355, 1) 0.25s both;
+    animation: expand 1.1s cubic-bezier(0.215, 0.610, 0.355, 1) both;
 }
 
+/* Reveal the frame first, then its contents, so collapsed controls never show through. */
 @keyframes expand
 {
     0%
     {
-      opacity: 1;
-      width: 20vw;
-      height: 50px;
+        clip-path: inset(0 40% calc(100% - 50px) 40% round 15px);
     }
 
-    /* widen */
     45%
     {
-      opacity: 1;
-      width: 60vw;;
-      height: 50px;
+        clip-path: inset(0 0 calc(100% - 50px) 0 round 15px);
     }
 
-    /* pause */
-    60%
-    {
-      width: 60vw;
-      height: 50px;
-    }
-
-    /* heighten */
     100%
     {
-      opacity: 1;
-      width: 60vw;
-      height: 1000px;
-    }
-  }
-
-
-@media only screen and (max-width: 610px)
-{
-    footer
-    {
-        width: 100vw;
-    }
-
-    #initButton
-    {
-        width: 50vw;
-    }
-
-    #skillsBox
-    {
-        width: 50vw;
-    }
-
-    @keyframes expand
-    {
-        0%
-        {
-          opacity: 1;
-          width: 50vw;
-          height: 50px;
-        }
-
-        /* widen */
-        45%
-        {
-          opacity: 1;
-          width: 60vw;;
-          height: 50px;
-        }
-
-        /* pause */
-        60%
-        {
-          width: 60vw;
-          height: 50px;
-        }
-
-        /* heighten */
-        100%
-        {
-          opacity: 1;
-          width: 60vw;
-          height: 1000px;
-        }
+        clip-path: inset(0 0 0 0 round 15px);
     }
 }
 
-
 #filterBox
 {
-    border: 1px solid white;
-    border-radius: 15px 15px 0 0;
     display: flex;
     flex-direction: row;
-
-    height: 15%;
-
-    padding: 10px;
-
-    place-items: center;
+    align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px;
+    border-bottom: 1px solid white;
+}
+
+#skillFilters, #sortingFilters
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .skillsButtons
@@ -207,126 +148,199 @@ footer
     border: 1px solid white;
     border-radius: 15px;
     color: white;
-
     font-family: "Encode Sans Expanded", sans-serif;
-
-    margin-right: 15px;
-
-    padding: 5px 20px 5px 20px;
-
+    padding: 8px 14px;
+    cursor: pointer;
+    white-space: nowrap;
     transition: background-color 0.2s ease-out;
+
     &:hover
     {
         background-color: rgba(25, 25, 25, 1);
     }
+
+    &:focus-visible
+    {
+        outline: 3px solid cornflowerblue;
+        outline-offset: 3px;
+    }
+}
+
+.filterButtonActive, .sortButtonActive
+{
+    background-color: steelblue;
+    border-width: 2px;
+    font-weight: 600;
+
+    &:hover
+    {
+        background-color: royalblue;
+    }
+}
+
+#showCounter
+{
+    flex-basis: 100%;
+    text-align: center;
+    width: 100%;
+    font-size: 0.9rem;
 }
 
 #skillCards
 {
-    padding: 20px;
-
+    padding: 18px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 16px;
     background-color: rgba(15, 15, 15, 1);
-    height: 85%;
-
-    border-radius: 15px;
-
-    overflow: scroll;
+    border-radius: 0 0 15px 15px;
 }
 
-.skillCard
+.skill-card
 {
     position: relative;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    min-height: 310px;
+    gap: 10px;
     border: 1px solid white;
     border-radius: 15px;
-    padding: 2px;
+    padding: 18px 12px 12px;
+    background-color: rgba(45, 45, 45, 1);
 
     transition: background-color 0.2s ease-out;
     &:hover
     {
         background-color: rgba(25, 25, 25, 1);
     }
+}
+
+.skill-card p
+{
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: 0.9rem;
 }
 
 .cardTitle
 {
     font-weight: 500;
-    font-size: 1.5rem;
+    font-size: 1.2rem !important;
+    padding-right: 4px;
+    margin-top: 28px;
 }
 
-.filterButtons
+.categoryBadge
 {
-    background-color: transparent;
-    transition: background-color 0.25s ease;
-}
-.filterButtonActive
-{
-    background-color: steelblue;
-    transition: background-color 0.25s ease;
-    &:hover
-    {
-        background-color: royalblue;
-    }
-}
-
-.sortButtons
-{
-    background-color: transparent;
-    transition: background-color 0.25s ease;
-}
-.sortButtonActive
-{
-    background-color: steelblue;
-    transition: background-color 0.25s ease;
-    &:hover
-    {
-        background-color: royalblue;
-    }
-}
-
-.dot
-{
+    background-color: midnightblue;
+    border-radius: 0 14px;
     border: 1px solid white;
-    border-radius: 15px;
-
-    width: 45px;
-    height: 40px;
-    margin: auto;
+    padding: 4px 8px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 0.8rem !important;
 }
-.activeDot
+
+.experienceTag
 {
-    background-color: dodgerblue;
-    border: none;
+    font-size: 0.85rem !important;
+}
+
+.proficiencyLabel
+{
+    margin-top: auto;
+    font-size: 0.85rem !important;
 }
 
 .proficiencyMeter
 {
     display: flex;
     flex-direction: row;
-    width: 90%;
-    height: 40px;
-    margin: auto auto 15px auto;
+    gap: 9px;
+    width: 100%;
+    justify-content: center;
+    margin: 0 auto 3px;
 }
 
-.categoryBadge
+.dot
 {
-    background-color: midnightblue;
-    border-radius: 0 15px;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
     border: 1px solid white;
-
-    padding: 5px;
-
-    position: absolute;
-    right: 0;
-    top: 0;
+    border-radius: 50%;
 }
 
-.experienceTag
+.activeDot
 {
-    font-weight: bold;
+    background-color: dodgerblue;
+}
+
+@media only screen and (max-width: 1180px)
+{
+    #skillCards
+    {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media only screen and (max-width: 850px)
+{
+    #skillCards
+    {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #skillsStage
+    {
+        padding: 48px 14px;
+    }
+}
+
+@media only screen and (max-width: 610px)
+{
+    #skillCards
+    {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 12px;
+        gap: 12px;
+    }
+
+    #skillsStage
+    {
+        padding: 40px 10px;
+    }
+
+    #filterBox
+    {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .skillsButtons
+    {
+        padding: 7px 10px;
+        font-size: 0.8rem;
+    }
+
+    .skill-card
+    {
+        min-height: 250px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce)
+{
+    #skillsBox.transformed
+    {
+        animation: none;
+    }
+
+    #initButton, #skillsContent, .skillsButtons, .skill-card
+    {
+        transition: none;
+    }
 }

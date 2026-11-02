@@ -2,88 +2,91 @@ window.addEventListener("DOMContentLoaded", () =>
 {
     const initButton = document.getElementById("initButton");
     const skillsBox = document.getElementById("skillsBox");
-    const allFilterButton = document.getElementById("filterAll")
-    const techFilterButton = document.getElementById("filterTech")
-    const gamingFilterButton = document.getElementById("filterGaming")
-    const musicFilterButton = document.getElementById("filterMusic")
+    const skillsContent = document.getElementById("skillsContent");
+    const filterButtons = [...document.querySelectorAll(".filterButtons")];
+    const sortButtons = [...document.querySelectorAll(".sortButtons")];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    const nameSortButton = document.getElementById("nameSort")
-    const proficiencySortButton = document.getElementById("proficiencySort")
-    const experienceSortButton = document.getElementById("experienceSort")
+    reloadList(Skills, categoryFilter, sortFilter);
 
-    const filterButtons = [allFilterButton, techFilterButton, gamingFilterButton, musicFilterButton]
-    const sortButtons = [nameSortButton, proficiencySortButton, experienceSortButton]
-
-    reloadList(Skills, categoryFilter, sortFilter)
-
-    // Initial button to run the animation
-    initButton.addEventListener("click", function(event)
+    initButton.addEventListener("click", () =>
     {
-        initButton.classList.add("blackedOut", "disappear")
-        setTimeout(() =>
-        {
-            initButton.classList.add("hidden");
-        }, 1000)
-        setTimeout(() =>
-        {
-            reloadList(Skills, categoryFilter, sortFilter)
-        }, 2000)
-        skillsBox.classList.add("transformed")
-    })
+        initButton.disabled = true;
+        initButton.setAttribute("aria-expanded", "true");
+        initButton.classList.add("disappear");
 
-    // Filter buttons specificity filter
+        function showSkills()
+        {
+            initButton.hidden = true;
+            skillsBox.hidden = false;
+
+            function finishOpening()
+            {
+                skillsContent.classList.add("contentVisible");
+                skillsBox.classList.remove("transformed");
+            }
+
+            if(reducedMotion.matches)
+            {
+                finishOpening();
+            }
+            else
+            {
+                skillsBox.addEventListener("animationend", finishOpening, { once: true });
+                skillsBox.classList.add("transformed");
+            }
+        }
+
+        if(reducedMotion.matches)
+        {
+            showSkills();
+        }
+        else
+        {
+            setTimeout(showSkills, 250);
+        }
+    });
+
     filterButtons.forEach(button =>
     {
         button.addEventListener("click", () =>
         {
-            removeFilterButtonActiveState()
+            filterButtons.forEach(filterButton =>
+            {
+                filterButton.classList.remove("filterButtonActive");
+                filterButton.setAttribute("aria-pressed", "false");
+            });
 
-            button.classList.add("filterButtonActive")
+            button.classList.add("filterButtonActive");
             button.setAttribute("aria-pressed", "true");
-
             categoryFilter = button.dataset.category;
-            reloadList(Skills, categoryFilter, sortFilter)
-        })
-    })
 
-    // Sort buttons specificity function
+            reloadList(Skills, categoryFilter, sortFilter);
+        });
+    });
+
     sortButtons.forEach(button =>
     {
         button.addEventListener("click", () =>
         {
-            removeSortButtonActiveState()
+            sortButtons.forEach(sortButton =>
+            {
+                sortButton.classList.remove("sortButtonActive");
+                sortButton.setAttribute("aria-pressed", "false");
+            });
 
-            button.classList.add("sortButtonActive")
+            button.classList.add("sortButtonActive");
             button.setAttribute("aria-pressed", "true");
+            sortFilter = button.textContent.trim();
 
-            sortFilter = button.innerText
-            reloadList(Skills, categoryFilter, sortFilter)
-        })
-    })
-
-    function removeFilterButtonActiveState()
-    {
-        for(let i = 0; i < 4; i++)
-        {
-            filterButtons[i].classList.remove("filterButtonActive")
-            filterButtons[i].setAttribute("aria-pressed", "false");
-        }
-    }
-
-    function removeSortButtonActiveState()
-    {
-        for(let i = 0; i < 3; i++)
-        {
-            sortButtons[i].classList.remove("sortButtonActive")
-            sortButtons[i].setAttribute("aria-pressed", "false");
-        }
-    }
-})
+            reloadList(Skills, categoryFilter, sortFilter);
+        });
+    });
+});
 
 let categoryFilter = "All";
 let sortFilter = "Name";
-
-let showedSkills = 0;
+let renderCount = 0;
 
 
 class Skill
@@ -112,27 +115,67 @@ const Skills =
     new Skill(8, "Bass Guitar", "Music", 2, 2, "The bass guitar is definitely a fun instrument to play. I love the deep sounds it can create and I enjoy being the anchor bassline in a song.")
 ]
 
-function reloadList(Skills, categoryFilter, sortFilter)
+function createSkillCard(skill)
 {
-    showedSkills = 0;
-    const container = document.getElementById("skillCards")
+    const card = document.createElement("div");
+    card.classList.add("skill-card");
+    card.dataset.skillId = skill.id;
 
-    while (container.firstChild)
+    card.innerHTML = `
+        <p class="cardTitle">${skill.name}</p>
+        <p class="categoryBadge">${skill.category}</p>
+        <p class="experienceTag">Experience: ${skill.yearsExperience} years</p>
+        <p>${skill.description}</p>
+        <p class="proficiencyLabel">Proficiency: ${skill.proficiency}/5</p>
+        <div class="proficiencyMeter" aria-hidden="true"></div>
+    `;
+
+    const dotsContainer = card.querySelector(".proficiencyMeter");
+
+    for(let i = 0; i < 5; i++)
     {
-        container.removeChild(container.lastChild)
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+
+        if(i < skill.proficiency)
+        {
+            dot.classList.add("activeDot");
+        }
+
+        dotsContainer.appendChild(dot);
     }
 
+    return card;
+}
 
-    Skills
-        const filteredSkills = Skills
-        .filter
-        (
-        skill =>
-            categoryFilter === "All" ||
-            skill.category === categoryFilter
-        )
-         .sort((a, b) => {
-            switch (sortFilter) {
+function reloadList(Skills, categoryFilter, sortFilter)
+{
+    const container = document.getElementById("skillCards");
+    const skillsBox = document.getElementById("skillsBox");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const shouldAnimate = !reducedMotion && !skillsBox.hidden;
+    const currentRender = ++renderCount;
+
+    const previousCards = new Map();
+    const previousPositions = new Map();
+
+    [...container.children].forEach(card =>
+    {
+        card.getAnimations().forEach(animation => animation.cancel());
+        previousCards.set(card.dataset.skillId, card);
+
+        if(shouldAnimate)
+        {
+            previousPositions.set(card.dataset.skillId, card.getBoundingClientRect());
+        }
+    });
+
+    const filteredSkills = Skills
+        .filter(skill => categoryFilter === "All" || skill.category === categoryFilter)
+        .sort((a, b) =>
+        {
+            switch(sortFilter)
+            {
                 case "Proficiency":
                     return b.proficiency - a.proficiency;
 
@@ -144,44 +187,73 @@ function reloadList(Skills, categoryFilter, sortFilter)
 
                 default:
                     return 0;
+            }
+        });
+
+    const visibleIds = new Set(filteredSkills.map(skill => String(skill.id)));
+
+    previousCards.forEach((card, id) =>
+    {
+        if(!visibleIds.has(id))
+        {
+            card.remove();
+        }
+    });
+
+    filteredSkills.forEach(skill =>
+    {
+        const card = previousCards.get(String(skill.id)) || createSkillCard(skill);
+        container.appendChild(card);
+    });
+
+    document.getElementById("showCounter").textContent =
+        `Currently showing ${filteredSkills.length} out of ${Skills.length} cards.`;
+
+    if(shouldAnimate)
+    {
+        requestAnimationFrame(() =>
+        {
+            if(currentRender !== renderCount)
+            {
+                return;
+            }
+
+            [...container.children].forEach(card =>
+            {
+                const previousPosition = previousPositions.get(card.dataset.skillId);
+
+                if(previousPosition)
+                {
+                    const newPosition = card.getBoundingClientRect();
+                    const changeX = previousPosition.left - newPosition.left;
+                    const changeY = previousPosition.top - newPosition.top;
+
+                    if(Math.abs(changeX) > 1 || Math.abs(changeY) > 1)
+                    {
+                        card.animate(
+                        [
+                            { transform: `translate(${changeX}px, ${changeY}px)` },
+                            { transform: "translate(0, 0)" }
+                        ],
+                        {
+                            duration: 350,
+                            easing: "cubic-bezier(0.215, 0.610, 0.355, 1)"
+                        });
+                    }
+                }
+                else
+                {
+                    card.animate(
+                    [
+                        { opacity: 0, transform: "translateY(12px)" },
+                        { opacity: 1, transform: "translateY(0)" }
+                    ],
+                    {
+                        duration: 280,
+                        easing: "ease-out"
+                    });
                 }
             });
-
-        filteredSkills.forEach(skill =>
-        {
-            showedSkills++;
-
-            const card = document.createElement("div")
-            card.classList.add("skillCard")
-
-            card.innerHTML =
-            `
-                <p class="cardTitle">${skill.name}</p>
-                <p class="categoryBadge">${skill.category}</p>
-                <p class="experienceTag">Experience: ${skill.yearsExperience} years</p>
-                <p>${skill.description}</p>
-
-                <div class="proficiencyMeter">
-                </div>
-            `
-
-            const dotsContainer = card.querySelector(".proficiencyMeter");
-
-            for(let i = 0; i < 5; i++)
-            {
-                const dot = document.createElement("div")
-                dot.classList.add("dot");
-
-                if(i < skill.proficiency)
-                {
-                    dot.classList.add("activeDot")
-                }
-
-                dotsContainer.appendChild(dot)
-            }
-            container.appendChild(card)
-        })
-
-    document.getElementById("showCounter").innerHTML = `Currently showing ${showedSkills} out of ${Skills.length} cards.`
-    console.log("Cards have been reloaded.")
+        });
+    }
 }

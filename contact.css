@@ -135,3 +135,71 @@ button, #submit
         filter: brightness(50%);
     }
 }
+
+
+@media only screen and (max-width: 850px)
+{
+    #contactBox
+    {
+        width: min(620px, calc(100% - 24px));
+        min-width: 0;
+        padding: 24px 18px 45px;
+        margin-top: 50px;
+        margin-bottom: 80px;
+    }
+
+    #contactBox input, #contactBox select, #contactBox #message
+    {
+        width: min(100%, 480px);
+    }
+
+    #contactBox button
+    {
+        width: min(80%, 300px);
+    }
+
+    #contactBox label
+    {
+        font-size: 1.1rem;
+        margin-top: 24px;
+        text-align: center;
+    }
+
+    #contactBox p
+    {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    h1
+    {
+        margin: 30px auto 0;
+    }
+}
+
+@media only screen and (max-width: 610px)
+{
+    #contactBox
+    {
+        width: calc(100% - 18px);
+        padding: 20px 12px 35px;
+    }
+
+    #contactBox input, #contactBox select, #contactBox #message
+    {
+        font-size: 0.95rem;
+    }
+
+    #contactBox input, #contactBox select
+    {
+        height: 50px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce)
+{
+    #contactBox input, #contactBox select, #contactBox #message, #contactBox button
+    {
+        transition: none !important;
+    }
+}

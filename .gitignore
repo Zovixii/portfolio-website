@@ -1,0 +1,22 @@
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files and logs
+*.log
+*.tmp
+*.bak
+*~
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Local environment files
+.env
+.env.*
+
+# PHCODE automatically generated files
+.phcode.json

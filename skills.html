@@ -33,8 +33,8 @@
                 </span>
                 <br>
                 <span>
-                    <a class="short" href="./timeline.html">T</a>
-                    <a class="long" href="./timeline.html">Timeline</a>
+                    <a class="short" href="./skills.html">S</a>
+                    <a class="long" href="./skills.html">Skills</a>
                 </span>
                 <br>
                 <span>
@@ -49,28 +49,30 @@
 
         <main>
 
-            <div>
-                <button type="button" id="initButton">Click to open my skills check!</button>
+            <div id="skillsStage">
+                <button type="button" id="initButton" aria-controls="skillsBox" aria-expanded="false">Click to open my skills check!</button>
 
-                <div id="skillsBox">
-                    <div id="filterBox">
-                        <button class="skillsButtons filterButtons filterButtonActive" id="filterAll" data-category="All" aria-pressed="true">All</button>
-                        <div id="skillFilters">
-                            <button class="skillsButtons filterButtons" id="filterTech" data-category="Tech" aria-pressed="false">Tech</button>
-                            <button class="skillsButtons filterButtons" id="filterGaming" data-category="Gaming" aria-pressed="false">Gaming</button>
-                            <button class="skillsButtons filterButtons" id="filterMusic" data-category="Music" aria-pressed="false">Music</button>
+                <div id="skillsBox" hidden>
+                    <div id="skillsContent">
+                        <div id="filterBox">
+                            <button class="skillsButtons filterButtons filterButtonActive" id="filterAll" data-category="All" aria-pressed="true">All</button>
+                            <div id="skillFilters">
+                                <button class="skillsButtons filterButtons" id="filterTech" data-category="Tech" aria-pressed="false">Tech</button>
+                                <button class="skillsButtons filterButtons" id="filterGaming" data-category="Gaming" aria-pressed="false">Gaming</button>
+                                <button class="skillsButtons filterButtons" id="filterMusic" data-category="Music" aria-pressed="false">Music</button>
+                            </div>
+                            <div id="sortingFilters">
+                                <button class="skillsButtons sortButtons sortButtonActive" id="nameSort" aria-pressed="true">Name</button>
+                                <button class="skillsButtons sortButtons" id="proficiencySort" aria-pressed="false">Proficiency</button>
+                                <button class="skillsButtons sortButtons" id="experienceSort" aria-pressed="false">Experience</button>
+                            </div>
+
+                            <p id="showCounter"></p>
                         </div>
-                        <div id="sortingFilters">
-                            <button class="skillsButtons sortButtons sortButtonActive" id="nameSort" aria-pressed="true">Name</button>
-                            <button class="skillsButtons sortButtons" id="proficiencySort" aria-pressed="false">Proficiency</button>
-                            <button class="skillsButtons sortButtons" id="experienceSort" aria-pressed="false">Experience</button>
+
+                        <div id="skillCards">
+
                         </div>
-
-                        <p id="showCounter"></p>
-                    </div>
-
-                    <div id="skillCards">
-
                     </div>
                 </div>
             </div>
@@ -85,7 +87,7 @@
 
             <footer class="noHover" id="footer">
                 <div class="noHover">
-                    <div class="footerBox"><p class="noHover"><a href="./index.html">Home</a><br><a href="./gallery.html">Gallery</a><br><a href="./timeline.html">Timeline</a><br><a href="./contact.html">Contact</a></p></div>
+                    <div class="footerBox"><p class="noHover"><a href="./index.html">Home</a><br><a href="./gallery.html">Gallery</a><br><a href="./skills.html">Skills</a><br><a href="./contact.html">Contact</a></p></div>
                     <div class="footerBox"><p class="noHover"><a href="./contact.html">Contact Me</a></p></div>
                     <div class="footerBox"><p class="noHover"><a>Instagram: @mateoberry.a</a><br><a>Discord: Zovixi</a></p></div>
                     <div id="copyright" class="noHover">&copy;Mateo Berry, All rights reserved. The material on this site may not be reproduced, distributed, transmitted, cached or otherwise used, except with the prior written permission of Mateo Berry. Mosaic</div>
